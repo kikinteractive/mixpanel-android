@@ -39,7 +39,7 @@ public class HttpTest extends AndroidTestCase {
 
         final RemoteService mockPoster = new HttpService() {
             @Override
-            public byte[] performRequest(String endpointUrl, Map<String, Object> params, SSLSocketFactory socketFactory)
+            public byte[] performRequest(String endpointUrl, Map<String, Object> params, SSLSocketFactory socketFactory, String versionString)
                 throws ServiceUnavailableException, IOException {
                 try {
                     if (null == params) {

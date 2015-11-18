@@ -409,7 +409,7 @@ public class MixpanelBasicTest extends AndroidTestCase {
 
         final RemoteService mockPoster = new HttpService() {
             @Override
-            public byte[] performRequest(String endpointUrl, Map<String, Object> params, SSLSocketFactory socketFactory) {
+            public byte[] performRequest(String endpointUrl, Map<String, Object> params, SSLSocketFactory socketFactory, String versionString) {
                 final boolean isIdentified = isIdentifiedRef.get();
                 if (null == params) {
                     if (isIdentified) {
@@ -915,7 +915,7 @@ public class MixpanelBasicTest extends AndroidTestCase {
     public void testAlias() {
         final RemoteService mockPoster = new HttpService() {
             @Override
-            public byte[] performRequest(String endpointUrl, Map<String, Object> params, SSLSocketFactory socketFactory) {
+            public byte[] performRequest(String endpointUrl, Map<String, Object> params, SSLSocketFactory socketFactory, String versionString) {
                 try {
                     assertTrue(params.containsKey("data"));
                     final String jsonData = Base64Coder.decodeString(params.get("data").toString());

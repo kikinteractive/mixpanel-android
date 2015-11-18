@@ -64,7 +64,7 @@ public class DecideFunctionalTest extends AndroidTestCase {
         mExpectations = new Expectations();
         mMockPoster = new HttpService() {
             @Override
-            public byte[] performRequest(String endpointUrl, Map<String, Object> params, SSLSocketFactory socketFactory) {
+            public byte[] performRequest(String endpointUrl, Map<String, Object> params, SSLSocketFactory socketFactory, String versionString) {
                 return mExpectations.setExpectationsRequest(endpointUrl, params);
             }
         };

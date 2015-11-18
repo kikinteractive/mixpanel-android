@@ -416,7 +416,7 @@ import javax.net.ssl.SSLSocketFactory;
                     for (String url : urls) {
                         try {
                             final SSLSocketFactory socketFactory = mConfig.getSSLSocketFactory();
-                            response = poster.performRequest(url, params, socketFactory);
+                            response = poster.performRequest(url, params, socketFactory, mSystemInformation.getAppVersionName());
                             deleteEvents = true; // Delete events on any successful post, regardless of 1 or 0 response
                             if (null == response) {
                                 logAboutMessageToMixpanel("Response was null, unexpected failure posting to " + url + ".");
