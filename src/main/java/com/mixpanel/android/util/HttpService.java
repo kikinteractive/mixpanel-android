@@ -9,13 +9,11 @@ import android.util.Log;
 import com.mixpanel.android.mpmetrics.MPConfig;
 
 import java.io.BufferedOutputStream;
-import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
@@ -48,7 +46,7 @@ public class HttpService implements RemoteService {
     }
 
     @Override
-    public byte[] performRequest(String endpointUrl, Map<String, Object> params, SSLSocketFactory socketFactory) throws ServiceUnavailableException, IOException {
+    public byte[] performRequest(String endpointUrl, Map<String, Object> params, SSLSocketFactory socketFactory, String versionString) throws ServiceUnavailableException, IOException {
         if (MPConfig.DEBUG) {
             Log.v(LOGTAG, "Attempting request to " + endpointUrl);
         }
@@ -76,6 +74,12 @@ public class HttpService implements RemoteService {
                 connection.setConnectTimeout(2000);
                 connection.setReadTimeout(10000);
                 if (null != params) {
+                    if (null != versionString) {
+                        String defaultUserAgent = System.getProperty("http.agent");
+                        String finalUserAgent =  "Kik/" + versionString + " " + defaultUserAgent;
+                        connection.addRequestProperty("User-Agent", finalUserAgent);
+                    }
+
                     Uri.Builder builder = new Uri.Builder();
                     for (Map.Entry<String, Object> param : params.entrySet()) {
                         builder.appendQueryParameter(param.getKey(), param.getValue().toString());

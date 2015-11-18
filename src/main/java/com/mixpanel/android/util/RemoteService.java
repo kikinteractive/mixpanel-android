@@ -12,7 +12,7 @@ import javax.net.ssl.SSLSocketFactory;
 public interface RemoteService {
     boolean isOnline(Context context);
 
-    byte[] performRequest(String endpointUrl, Map<String, Object> params, SSLSocketFactory socketFactory)
+    byte[] performRequest(String endpointUrl, Map<String, Object> params, SSLSocketFactory socketFactory, String versionString)
             throws ServiceUnavailableException, IOException;
 
     class ServiceUnavailableException extends Exception {

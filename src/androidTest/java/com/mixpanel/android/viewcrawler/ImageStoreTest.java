@@ -77,7 +77,7 @@ public class ImageStoreTest extends AndroidTestCase {
         }
 
         @Override
-        public byte[] performRequest(final String endpointUrl, final Map<String, Object> params, SSLSocketFactory socketFactory)
+        public byte[] performRequest(final String endpointUrl, final Map<String, Object> params, SSLSocketFactory socketFactory, String versionString)
                 throws ServiceUnavailableException, IOException {
             queries++;
             return response;
