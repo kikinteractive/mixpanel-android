@@ -29,6 +29,9 @@ android {
             disable "UnusedResources"
         }
     }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 // Note- *all* dependencies are marked as optional in our final
