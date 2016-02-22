@@ -115,6 +115,11 @@ public class HttpService implements RemoteService {
                     throw e;
                 }
             }
+            catch (Throwable e) {
+                if (MPConfig.DEBUG) {
+                    Log.d(LOGTAG, "Caught Throwable", e);
+                }
+            }
             finally {
                 if (null != bout)
                     try { bout.close(); } catch (final IOException e) { ; }
